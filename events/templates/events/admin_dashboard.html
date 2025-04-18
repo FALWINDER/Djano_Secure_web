@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Admin Dashboard</h2>
+  <a href="{% url 'add_event' %}" class="btn btn-primary mb-3">Add Event</a>
+  <div class="row">
+    {% for event in events %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="card-text">{{ event.description }}</p>
+            <p class="text-muted small">{{ event.date }} | {{ event.time }} | {{ event.location }}</p>
+            <p class="badge bg-success">Registered Users: {{ event.registration_count }}</p>
+            <div class="d-flex justify-content-between mt-3">
+              <a href="{% url 'edit_event' event.id %}" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{% url 'delete_event' event.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

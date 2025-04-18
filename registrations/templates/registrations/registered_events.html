@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">My Registered Events</h2>
+  <div class="row">
+    {% if registrations %}
+      {% for reg in registrations %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{ reg.event.title }}</h5>
+              <p class="card-text">{{ reg.event.description }}</p>
+              <p class="text-muted small">
+                {{ reg.event.date }} | {{ reg.event.time }} | {{ reg.event.location }}
+              </p>
+              <p class="text-end small text-success">Registered on {{ reg.timestamp|date:"M d, Y H:i" }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-center text-muted">You haven't registered for any events yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
